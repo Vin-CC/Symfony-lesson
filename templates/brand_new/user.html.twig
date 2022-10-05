@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body>
+    {{dump(user)}}
+
+    <br>
+
+    <h1>{{user.getName}}</h1>
+
+    {{ include("component/form/userForm.html.twig", { userToForm: user }) }}
+</body>
+{% endblock %}

@@ -2,9 +2,8 @@ controllers:
     resource: ../src/Controller/
     type: annotation
 
-/*
-
-*/
-app_lucky_number:
-    path: /lucky/number
-    controller: App\Controller\LuckyController::number
+page_privacy:
+    path: /privacy
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: 'static/privacy.html.twig'

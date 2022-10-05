@@ -1,0 +1,26 @@
+{% extends 'layout/adminLayout.html.twig' %}
+
+{% block title %}Site de ecommerce{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Modifier le produit {{product.getName}}</h1>
+    <div>
+        <form>
+            <label for="name">
+                Nom:
+                <input id="name" name="name" type="text" value="{{product.getName}}"/>
+            </label>
+            <label for="description">
+                Description: 
+                <input id="description" type="text" value="{{product.getDescription}}"/>
+            </label>
+            <label for="price">
+                Prix:
+                <input id="price" value="{{product.getPrice}}"/>
+            </label>
+            <input type="submit" value="Modifier" />
+        </form>
+    </div>
+</div>
+{% endblock %}

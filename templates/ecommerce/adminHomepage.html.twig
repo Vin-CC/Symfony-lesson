@@ -1,0 +1,39 @@
+{% extends 'layout/adminLayout.html.twig' %}
+
+{% block title %}Site de ecommerce{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Home page admin</h1>
+    <div>
+        la liste de produits
+    </div>
+    <table role="grid">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Action</th>
+            </tr>
+        <thead>
+        <tbody>
+        {% for product in productList %}
+            <tr>
+                <th>{{product.getId}}</th>
+                <th>{{product.getName}}</th>
+                <th>{{product.getDescription|raw}}</th>
+                <th>{{product.getPrice}}€</th>
+                <th>
+                    <a href="{{path('product-update', {slug: product.getSlug})}}" >
+                        modifier
+                    </a>
+                </th>
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+    <a href="{{path('product-create')}}" role="button">Créer un produit</a>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Site de ecommerce{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Home page</h1>
+    <div>
+        la liste de produits
+    </div>
+    <ul>
+        {% for product in productList %}
+            <li>
+                <a href="{{path('product-detail', {slug: product.getSlug})}}" >{{product.getName}}</a>
+            </li>
+        {% endfor%}
+    </ul>
+</div>
+{% endblock %}

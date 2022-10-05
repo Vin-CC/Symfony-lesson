@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Site de ecommerce{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Connection</h1>
+    <form action="{{path('adminHomepage')}}">
+        <label for="pseudo">
+            <input id="pseudo" name="pseudo" type="text" placeholder="Saisir le pseudo" />
+        </label>
+        <label for="pwd">
+            <input id="pwd" name="pwd" type="password" placeholder="Saisir le mot de passe" />
+        </label>
+        <input type="submit" value="Connection">
+    </form>
+</div>
+{% endblock %}

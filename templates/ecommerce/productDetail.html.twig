@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Site de ecommerce{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Produit {{product.getName}}</h1>
+    <div>
+        Détails:
+    </div>
+    <div>
+        {{product.getDescription}}
+    </div>
+</div>
+{% endblock %}

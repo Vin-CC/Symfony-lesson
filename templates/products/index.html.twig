@@ -1,0 +1,8 @@
+<body>
+    {{ render(
+            controller(
+                'App\\Controller\\BrandNewController::showProducts', { max: 3 }
+            )
+        )
+    }}
+</body>

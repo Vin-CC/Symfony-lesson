@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BrandNewController!{% endblock %}
+
+{% block body %}
+<link href="{{ asset('/css/index.css') }}" rel="stylesheet" />
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h2 class="h1">Mon query param vaut: {{textToShow}}</h2>
+    <h3>L'ancien texte est: {{oldText}}</h3>
+
+    <img src="{{ asset('/images/bloc.png') }}" alt="image bloc" class="img-test />
+
+    This friendly message is coming from:
+    {% for message in app.flashes('notice') %}
+        <h4>
+            {{message}}
+        </h4>
+    {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block footer %}
+Ceci est mon footer
+{% endblock %}
