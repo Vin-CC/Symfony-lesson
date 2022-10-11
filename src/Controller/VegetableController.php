@@ -42,16 +42,19 @@ class VegetableController extends AbstractController
     {
         $all = $vegetableRepository->findAll();
 
-        $output = array_map(function ($object) { return $object->getName(); }, $all);
-        return new Response('All vegetables: '. implode(", ", $output));
+        $output = array_map(function ($object) {
+            return "<br>id: " . $object->getId() . " name: " . $object->getName();
+        }, $all);
+        return new Response('<body>All vegetables: '. implode(", ", $output) . '</body>');
     }
 
     #[Route('/vegetable/{id}', name: 'vegetable_show')]  
     // public function show(ManagerRegistry $doctrine, int $id): Response
-    public function show(int $id, VegetableRepository $vegetableRepository): Response
+    // public function show(int $id, VegetableRepository $vegetableRepository): Response
+    public function show(Vegetable $vegetable): Response
     {
         //$vegetable = $doctrine->getRepository(Vegetable::class)->find($id);
-        $vegetable = $vegetableRepository->find($id);
+        // $vegetable = $vegetableRepository->find($id);
 
         if(!$vegetable) {
             throw $this->createNotFoundException(
@@ -60,5 +63,40 @@ class VegetableController extends AbstractController
         }
 
         return new Response('Check out this great vegetable ' . $vegetable->getName());
+    }
+
+    #[Route('/vegetable/{id}/update', name: 'vegetable_edit')]  
+    public function edit(ManagerRegistry $doctrine, Vegetable $vegetable): Response
+    {
+        $entityManager = $doctrine->getManager();
+        if(!$vegetable) {
+            throw $this->createNotFoundException(
+                'No vegetable found for id ' . $id
+            );
+        }
+
+        $vegetable->setName('Carotte');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('vegetable_show', [
+            'id' => $vegetable->getId()
+        ]);
+    }
+
+    #[Route('/vegetable/{id}/delete', name: 'vegetable_delete')]  
+    public function delete(ManagerRegistry $doctrine, Vegetable $vegetable): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        if(!$vegetable) {
+            throw $this->createNotFoundException(
+                'No vegetable found for id ' . $id
+            );
+        }
+
+        $entityManager->remove($vegetable);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('vegetable_all');
     }
 }
