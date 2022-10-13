@@ -1,7 +1,7 @@
 <?php
 namespace App\Entity;
 
-class User {
+class Task {
     private $task;
     private $dueDate;
 
