@@ -17,8 +17,8 @@ class TaskController extends AbstractController
     public function new(Request $request): Response
     {
         $task = new Task();
-        $task->setTask("Write a blog post");
-        $task->setDueTime(new \DateTime('tomorrow'));
+        // $task->setTask("Write a blog post");
+        // $task->setDueTime(new \DateTime('tomorrow'));
 
         // $form = $this->createFormBuilder($task)
         //     ->add('task', TextType::class)
@@ -27,8 +27,21 @@ class TaskController extends AbstractController
         //     ->getForm();
         $form = $this->createForm(TaskType::class, $task);
 
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $task = $form->getData();
+
+            return $this->redirectionRoute('task_succes');
+        }
+
         return $this->renderForm('task/new.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/task/success', name: 'task_success')]
+    public function success(): Response
+    {
+        return $this->render('task/success.html.twig');
     }
 }
